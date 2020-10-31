@@ -1,6 +1,6 @@
 # Trading Strategies
 
-## Take Profit / Stop Loss
+## Take Profit / Stop Loss
 
 ```
 stopLossPercentage = input(2.0, title='Stop Loss %') / 100
