@@ -1,6 +1,8 @@
 # Trading Strategies
 
-## Take Profit / Stop Loss
+## Snippets
+
+### Take Profit / Stop Loss Formula
 
 ```
 stopLossPercentage = input(2.0, title='Stop Loss %') / 100
@@ -11,7 +13,7 @@ sellStopLossLevel = strategy.position_avg_price * (1 + stopLossPercentage)
 sellTakeProfitLevel = strategy.position_avg_price * (1 - takeProfitPercentage)
 ```
 
-## Bollinger Bands
+### Bollinger Bands Formula
 
 ```
 length = input(20, minval=1)
