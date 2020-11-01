@@ -56,6 +56,39 @@ if (strategy.position_size < 0)
     strategy.exit(id="XS TRL STP", stop=shortStopPrice)
 ```
 
+## Full Strategy
+
+### Kangaroo Tail
+
+```
+//Based on "How Naked Trading Works" video by Walter Peters: https://youtu.be/t-pD3fap25c?t=1m21s
+//@version=4
+study(title = "Naked Forex - Kangaroo Tail & Big Shadow Indicator", overlay = true)
+
+roomToTheLeftPeriod = input(title="RoomToLeft Candles", defval=14, minval=2, maxval=30)
+bodyRelativeSize= input(title="Body range", defval=3, minval=2, maxval=20000)
+
+
+//  kangaroo tails
+rangePrev1=high[1] - low[1]
+rangePrev2=high[2] - low[2]
+range=high - low
+body=abs(close - open)
+topthird = high - range/3.0
+lowthird = low + range/3.0
+withinPrevCandleRange = close >= low[1] and close <= high[1]
+
+roomToTheHi  = rising(high, roomToTheLeftPeriod) 
+roomToTheLo  = falling(low, roomToTheLeftPeriod)
+
+// kangaroo tails
+kangarootail1 =range > rangePrev1 and withinPrevCandleRange and  body*bodyRelativeSize <= range and close >= topthird and open >= topthird and low<low[1] and low<low[2] and low<low[3] and low<low[4] and low<low[5] and low<low[6] and low<low[7]
+kangarootail2 =range > rangePrev1 and withinPrevCandleRange and body*bodyRelativeSize <= range and close < lowthird and open <= lowthird and high>high[1] and high>high[2] and high>high[3]and high>high[4]and high>high[5]and high>high[6]and high>high[7]
+plotshape(kangarootail1, title= "Kangaroo tail",location=location.belowbar, color=color.green, style=shape.arrowup, text="Kangaroo tail")
+
+plotshape(kangarootail2, title= "Kangaroo tail", color=color.red, style=shape.arrowdown, text="Kangaroo tail")
+```
+
 ## Full Study
 
 ### Support and resistance
