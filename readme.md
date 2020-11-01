@@ -11,6 +11,11 @@ buyStopLossLevel = strategy.position_avg_price * (1 - stopLossPercentage)
 buyTakeProfitLevel = strategy.position_avg_price * (1 + takeProfitPercentage)
 sellStopLossLevel = strategy.position_avg_price * (1 + stopLossPercentage)
 sellTakeProfitLevel = strategy.position_avg_price * (1 - takeProfitPercentage)
+
+if(strategy.position_size > 0)
+    strategy.exit("close", "buy", stop = buyStopLossLevel, limit = buyTakeProfitLevel)
+if(strategy.position_size < 0)
+    strategy.exit("close", "sell", stop = sellStopLossLevel, limit = sellTakeProfitLevel)
 ```
 
 ### Bollinger Bands Formula
