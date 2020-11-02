@@ -1,4 +1,4 @@
-# Macd Default
+# Bollinger Bands Default
 
 ```
 //@version=4
